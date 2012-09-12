@@ -2,13 +2,18 @@
 #include <stdlib.h>
 #include "twoThreeTree.h"
 
-twoThreeNode* createTwoThreeNode(int leaf)
+twoThreeNode* createTwoThreeNode(linkType LinkType)
 {
 	twoThreeNode* new = malloc(sizeof(twoThreeNode));
-	new->small = new->large = NULL;
-	new->left = new->middle = new->right = new->parent = NULL;
-	new->leaf = leaf;
-	new->minimum = NULL;
+	new->small = new->large = new->minimum = NULL;
+	if (LinkType) {
+		new->left->node = new->middle->node = new->right->node = NULL;
+	} else {
+		new->left->leaf = new->middle->leaf = new->right->leaf = NULL;
+	}
+	new->parent->node = NULL;
+	new->LinkType = LinkType;
+
 	return new;
 }
 

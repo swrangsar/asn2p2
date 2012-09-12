@@ -28,7 +28,7 @@ void insertAtNode(twoThreeNode* node, key* inputKey)
 	if (node->leaf) {
 		/* hand over to some other function */
 	}
-	if (node->small && node->large) {
+	if (inputKey->value <  && node->large) {
 		/* split the node */
 	}
 	

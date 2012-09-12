@@ -5,28 +5,33 @@ typedef struct key {
 	int value;
 } key;
 
+typedef struct item {
+	int value;
+	void* data;
+} item;
+
+typedef enum linkType {
+	LEAF,
+	INTERNAL
+} linkType;
+
 struct twoThreeNode;
 typedef union twoThreeLink {
-	struct twoThreeNode *node;
-	void* data;
+	struct twoThreeNode* node;
+	item* leaf;
 } twoThreeLink;
 
 typedef struct twoThreeNode {
-	key* small;
-	key* large;
-	struct twoThreeNode* left;
-	struct twoThreeNode* middle;
-	struct twoThreeNode* right;
-	struct twoThreeNode* parent;
-	int leaf;
-	key* minimum;
+	key *small, *large, *minimum;
+	twoThreeLink *left, *middle, *right, *parent;
+	linkType LinkType;
 } twoThreeNode;
 
 typedef struct twoThreeTree {
 	twoThreeNode* root;
 } twoThreeTree;
 
-twoThreeNode* createTwoThreeNode(int leaf);
+twoThreeNode* createTwoThreeNode(linkType LinkType);
 twoThreeTree* createTwoThreeTree();
 
 #endif
