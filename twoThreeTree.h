@@ -5,6 +5,12 @@ typedef struct key {
 	int value;
 } key;
 
+struct twoThreeNode;
+typedef union twoThreeLink {
+	struct twoThreeNode *node;
+	void* data;
+} twoThreeLink;
+
 typedef struct twoThreeNode {
 	key* small;
 	key* large;

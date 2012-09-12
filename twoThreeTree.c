@@ -19,4 +19,16 @@ twoThreeTree* createTwoThreeTree()
 	return new;
 }
 
-
+void insertAtNode(twoThreeNode* node, key* inputKey)
+{
+	if (!node) {
+		perror("We cannot insert anything at a NULL node!\n");
+		exit(1);
+	}
+	if (node->leaf) {
+		/* hand over to some other function */
+	}
+	if (inputKey->value <  && node->large) {
+		/* split the node */
+	}
+	
