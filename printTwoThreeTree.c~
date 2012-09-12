@@ -40,4 +40,4 @@ void printTwoThreeNode(twoThreeNode* node)
 	if (node->small) a = node->small->value;
 	if (node->large) b = node->large->value;
 	printf("small: %d large: %d\n", a, b);
-}		
+}

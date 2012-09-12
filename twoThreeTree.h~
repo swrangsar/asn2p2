@@ -1,37 +1,46 @@
 #ifndef _twoThreeTree_h
 #define _twoThreeTree_h
 
-typedef struct key {
-	int value;
-} key;
+typedef struct key key;
+typedef struct item item;
+typedef struct twoThreeNode twoThreeNode;
+typedef struct twoThreeLeaf twoThreeLeaf;
+typedef struct twoThreeTree twoThreeTree;
+typedef union twoThreeLink twoThreeLink;
 
-typedef struct item {
+struct key {
+	int value;
+}
+
+struct item {
 	int value;
 	void* data;
-} item;
+}
 
-typedef enum linkType {
-	LEAF,
-	INTERNAL
-} linkType;
+union twoThreeLink {
+	twoThreeNode* node;
+	twoThreeLeaf* leaf;
+}
 
-struct twoThreeNode;
-typedef union twoThreeLink {
-	struct twoThreeNode* node;
-	item* leaf;
-} twoThreeLink;
-
-typedef struct twoThreeNode {
+struct twoThreeNode {
 	key *small, *large, *minimum;
-	twoThreeLink *left, *middle, *right, *parent;
-	linkType LinkType;
-} twoThreeNode;
+	twoThreeLink *left, *middle, *right;
+	twoThreeNode *parent;
+	enum { INTERNAL, LEAF } linkType;
+}
 
-typedef struct twoThreeTree {
+struct twoThreeLeaf {
+	item *small, *large;
+	twoThreeNode *parent;
+}
+
+struct twoThreeTree {
 	twoThreeNode* root;
-} twoThreeTree;
+}
 
-twoThreeNode* createTwoThreeNode(int leaf);
+twoThreeNode* createTwoThreeNode(enum linkType);
 twoThreeTree* createTwoThreeTree();
+twoThreeLeaf* createTwoThreeLeaf();
+key* createKey(item* Item);
 
 #endif

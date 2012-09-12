@@ -22,9 +22,9 @@ void printTwoThreeNodeLevelOrder(twoThreeNode* node)
 	while (nodeQueue->tail) {
 		twoThreeNode* temp = dequeue(nodeQueue);
 		printTwoThreeNode(temp);
-		if (temp->left) enqueue(nodeQueue, temp->left);
-		if (temp->middle) enqueue(nodeQueue, temp->middle);
-		if (temp->right) enqueue(nodeQueue, temp->right);
+		if (temp->left && !temp->linkType) enqueue(nodeQueue, temp->left);
+		if (temp->middle && !temp->linkType) enqueue(nodeQueue, temp->middle);
+		if (temp->right && !temp->linkType) enqueue(nodeQueue, temp->right);
 		if (count == power2) {
 			printf("\n*** Level %d ***\n", level++);
 			count = 0; power2 *= 2;
